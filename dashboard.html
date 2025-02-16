@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SBI Online Banking</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    
+    <header>
+        <div class="logo">
+            <img src="assets/images/sbi.png" alt="SBI Logo">
+            <span>ONLINE</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Payments / Transfers</a>
+            <a href="#">Bill Payments</a>
+            <a href="#">Fixed Deposit</a>
+            <a href="#">e-Tax</a>
+            <a href="#">e-Services</a>
+            <a href="index.html" class="logout">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>My Accounts & Profile</h2>
+            <ul>
+                <li><a href="#" onclick="showSection('account-summary')">Account Summary</a></li>
+                <li><a href="#" onclick="showSection('profile')">Profile</a></li>
+                <li><a href="#" onclick="showSection('account-statement')">Account Statement</a></li>
+                <li><a href="#">Pending Statement</a></li>
+                <li><a href="#">Spend Analyzer</a></li>
+                <li><a href="#">e-Statement</a></li>
+                <li><a href="#">Select Your Segment</a></li>
+                <li><a href="#">Know Your CIBIL Score</a></li>
+                <li><a href="#">More ></a></li>
+            </ul>
+        </aside>
+
+        
+        <main class="dashboard">   
+            <section id="account-summary" class="content-section">
+                <h1>Account Summary</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Account No. / Nick Name</th>
+                            <th>Branch</th>
+                            <th>Available Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>*********1234</td>
+                            <td>Coimbatore Main</td>
+                            <td><a href="#">Click here for balance</a></td>
+                        </tr>
+                        <tr>
+                            <td>*********5678</td>
+                            <td>Chennai Branch</td>
+                            <td><a href="#">Click here for balance</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            
+            <section id="profile" class="content-section" style="display: none;">
+                <h1>User Profile</h1>
+                <div class="profile-info">
+                    <p><strong>Name:</strong> Akshaya</p>
+                    <p><strong>Email:</strong> akshaya@gmail.com</p>
+                    <p><strong>Mobile:</strong> +91 9876543210</p>
+                    <p><strong>Account Number:</strong> *********1234</p>
+                    <p><strong>Branch:</strong> Coimbatore Main</p>
+                    <button onclick="editProfile()">Edit Profile</button>
+                </div>
+            </section>
+
+           
+            <section id="account-statement" class="content-section" style="display: none;">
+                <h1>Account Statement</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statementBody">
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        
+        const transactions = [
+            { date: "2025-02-01", description: "ATM Withdrawal", amount: "- ₹2,000", balance: "₹48,000" },
+            { date: "2025-02-05", description: "Salary Credit", amount: "+ ₹50,000", balance: "₹98,000" },
+            { date: "2025-02-10", description: "Electricity Bill", amount: "- ₹3,500", balance: "₹94,500" },
+            { date: "2025-02-12", description: "Grocery Shopping", amount: "- ₹5,000", balance: "₹89,500" }
+        ];
+
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            document.getElementById(sectionId).style.display = 'block';
+
+            
+            if (sectionId === "account-statement") {
+                loadStatement();
+            }
+        }
+
+        
+        function loadStatement() {
+            let tableBody = document.getElementById("statementBody");
+            tableBody.innerHTML = ""; 
+            transactions.forEach(tx => {
+                let row = `<tr>
+                            <td>${tx.date}</td>
+                            <td>${tx.description}</td>
+                            <td>${tx.amount}</td>
+                            <td>${tx.balance}</td>
+                           </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function editProfile() {
+            alert("Edit Profile Feature Coming Soon!");
+        }
+    </script>
+
+</body>
+</html>
